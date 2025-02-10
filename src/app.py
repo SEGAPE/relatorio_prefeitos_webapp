@@ -41,7 +41,7 @@ st.markdown(
 # Carregar lista de municípios a partir do arquivo local
 @st.cache_data
 def carregar_municipios():
-    df = pd.read_csv("municipios.csv", dtype={"id_municipio": str})
+    df = pd.read_csv("src/static/municipios.csv", dtype={"id_municipio": str})
     df["nome_completo"] = df["nome"] + " - " + df["sigla_uf"]
     return df
 
