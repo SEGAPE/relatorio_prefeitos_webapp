@@ -4,9 +4,9 @@ import urllib.parse
 import requests
 
 # Configuração da página
-st.set_page_config(page_title="Download de Relatórios", layout="centered")
+st.set_page_config(page_title="Download de Relatórios", layout="wide")
 
-# Aplicar estilo da fonte Rawline
+# Aplicar estilo da fonte Rawline e personalizar selectbox
 st.markdown(
     """
     <style>
@@ -44,6 +44,23 @@ st.markdown(
             height: var(--button-size);
             width: auto;
             margin-top: 5px;
+        }
+        /* Estilo para o contêiner do selectbox */
+        div[data-baseweb="select"] > div {
+            background-color: #FFFFFF; /* Cor de fundo branca */
+            border-color: #D3D3D3; /* Cor da borda */
+        }
+        /* Estilo para os itens da lista */
+        div[role="listbox"] ul {
+            background-color: #FFFFFF; /* Cor de fundo branca para a lista */
+        }
+        /* Estilo para os itens individuais */
+        div[role="listbox"] li {
+            color: #000000; /* Cor do texto preta */
+        }
+        /* Estilo para o item selecionado */
+        div[role="listbox"] li:hover {
+            background-color: #F0F0F0; /* Cor de fundo ao passar o mouse */
         }
     </style>
     """,
