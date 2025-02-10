@@ -14,6 +14,18 @@ st.markdown(
         * {
             font-family: 'Rawline', sans-serif;
         }
+        .stApp {
+            background-color: white !important;
+            color: black !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 0px !important;
+        }
+        .block-container {
+            padding-top: 0px !important;
+        }
         .br-button {
             --button-radius: 100em;
             --button-medium: 40px;
@@ -31,12 +43,12 @@ st.markdown(
             cursor: pointer;
             height: var(--button-size);
             width: auto;
+            margin-top: 5px;
         }
     </style>
     """,
     unsafe_allow_html=True,
 )
-
 
 # Carregar lista de municípios a partir do arquivo local
 @st.cache_data
@@ -45,13 +57,15 @@ def carregar_municipios():
     df["nome_completo"] = df["nome"] + " - " + df["sigla_uf"]
     return df
 
-
 municipios = carregar_municipios()
 
+
 # Criar dropdown para seleção do município
+st.markdown("<div style='margin-top: -100px;'>", unsafe_allow_html=True)
 municipio_escolhido = st.selectbox(
-    "Selecione o município:", municipios["nome_completo"]
+    "", options=municipios["nome_completo"].sort_values(), index=None, placeholder="Digite aqui seu município"
 )
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Buscar código IBGE e UF correspondente
 if municipio_escolhido:
