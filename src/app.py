@@ -28,18 +28,18 @@ st.markdown(
         .br-button {
             background-color: #1351B4;
             color: white;
-            border-radius: 100em;
-            padding: 10px 20px;
+            border-radius: 12px;
+            padding: 8px 14px;
             font-weight: bold;
+            font-size: 0.82rem;
             text-align: center;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border: none;
             cursor: pointer;
-            white-space: nowrap;
-            min-height: 40px;
-            width: auto;
+            width: 90px;
+            line-height: 1.4;
             margin-top: 22px;
         }
         div[data-baseweb="select"] > div {
@@ -121,7 +121,7 @@ def renderizar_aba_csv(csv_path, base_url, prefix):
             linha = df[(df["uf"] == uf_escolhida) & (df["municipio"] == municipio_escolhido)].iloc[0]
             url = base_url + linha["caminho"]
             st.markdown(
-                f'<a href="{url}" target="_blank"><button class="br-button">Baixar Relatório</button></a>',
+                f'<a href="{url}" target="_blank"><button class="br-button">Baixar<br>Relatório</button></a>',
                 unsafe_allow_html=True,
             )
 
@@ -177,7 +177,7 @@ def renderizar_aba_2024():
                 f"relatorio_prefeitos/{uf}/{codigo_ibge}_{nome_enc}_{uf}.pdf.pdf"
             )
             st.markdown(
-                f'<a href="{url}" target="_blank"><button class="br-button">Baixar Relatório</button></a>',
+                f'<a href="{url}" target="_blank"><button class="br-button">Baixar<br>Relatório</button></a>',
                 unsafe_allow_html=True,
             )
 
