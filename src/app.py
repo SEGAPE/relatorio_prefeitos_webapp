@@ -23,15 +23,12 @@ st.markdown(
             display: none !important;
         }
         .block-container {
-            padding-top: 1rem !important;
+            padding-top: 0.5rem !important;
         }
         .br-button {
-            --button-radius: 100em;
-            --button-medium: 40px;
-            --button-size: var(--button-medium);
             background-color: #1351B4;
             color: white;
-            border-radius: var(--button-radius);
+            border-radius: 100em;
             padding: 10px 20px;
             font-weight: bold;
             text-align: center;
@@ -40,9 +37,10 @@ st.markdown(
             justify-content: center;
             border: none;
             cursor: pointer;
-            height: var(--button-size);
+            white-space: nowrap;
+            min-height: 40px;
             width: auto;
-            margin-top: 5px;
+            margin-top: 22px;
         }
         div[data-baseweb="select"] > div {
             background-color: #FFFFFF;
@@ -184,7 +182,8 @@ def renderizar_aba_2024():
             )
 
 
-tab1, tab2, tab3 = st.tabs(["Relatório Educacional 2025", "Relatório Equidade 2025", "Relatório Educacional 2024"])
+st.markdown("<p style='margin:0 0 4px 0; font-weight:600;'>Selecione o relatório</p>", unsafe_allow_html=True)
+tab1, tab2, tab3 = st.tabs(["Relatório Educacional 2025", "Relatório Equidade Racial", "Relatório Educacional 2024"])
 
 with tab1:
     renderizar_aba_csv(
