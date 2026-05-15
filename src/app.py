@@ -184,7 +184,7 @@ def renderizar_aba_2024():
             )
 
 
-tab1, tab2, tab3 = st.tabs(["MEC 2025", "Equidade 2025", "MEC 2024"])
+tab1, tab2, tab3 = st.tabs(["Relatório Educacional 2025", "Relatório Equidade 2025", "Relatório Educacional 2024"])
 
 with tab1:
     renderizar_aba_csv(
