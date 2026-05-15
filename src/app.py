@@ -19,8 +19,11 @@ st.markdown(
             justify-content: flex-start;
             align-items: center;
         }
+        header[data-testid="stHeader"] {
+            display: none !important;
+        }
         .block-container {
-            padding-top: 4rem !important;
+            padding-top: 1rem !important;
         }
         .br-button {
             --button-radius: 100em;
