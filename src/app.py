@@ -87,7 +87,7 @@ def renderizar_aba_csv(csv_path, base_url, prefix):
     df = carregar_index_csv(csv_path)
 
     ufs = sorted(df["uf"].dropna().unique())
-    col_uf, col_mun = st.columns(2)
+    col_uf, col_mun, col_btn = st.columns([1, 2, 1])
 
     with col_uf:
         st.markdown("**Selecione UF**")
@@ -117,20 +117,22 @@ def renderizar_aba_csv(csv_path, base_url, prefix):
             disabled=not uf_escolhida,
         )
 
-    if municipio_escolhido:
-        linha = df[(df["uf"] == uf_escolhida) & (df["municipio"] == municipio_escolhido)].iloc[0]
-        url = base_url + linha["caminho"]
-        st.markdown(
-            f'<a href="{url}" target="_blank"><button class="br-button">Baixar Relatório</button></a>',
-            unsafe_allow_html=True,
-        )
+    with col_btn:
+        st.markdown("&nbsp;", unsafe_allow_html=True)
+        if municipio_escolhido:
+            linha = df[(df["uf"] == uf_escolhida) & (df["municipio"] == municipio_escolhido)].iloc[0]
+            url = base_url + linha["caminho"]
+            st.markdown(
+                f'<a href="{url}" target="_blank"><button class="br-button">Baixar Relatório</button></a>',
+                unsafe_allow_html=True,
+            )
 
 
 def renderizar_aba_2024():
     municipios = carregar_municipios()
 
     ufs = sorted(municipios["sigla_uf"].dropna().unique())
-    col_uf, col_mun = st.columns(2)
+    col_uf, col_mun, col_btn = st.columns([1, 2, 1])
 
     with col_uf:
         st.markdown("**Selecione UF**")
@@ -162,23 +164,24 @@ def renderizar_aba_2024():
             disabled=not uf_escolhida,
         )
 
-    if municipio_escolhido:
-        info = municipios[
-            (municipios["nome"] == municipio_escolhido)
-            & (municipios["sigla_uf"] == uf_escolhida)
-        ].iloc[0]
-        codigo_ibge = info["id_municipio"]
-        nome_enc = urllib.parse.quote(info["nome"], safe="")
-        uf = info["sigla_uf"]
-
-        url = (
-            f"https://storage.googleapis.com/br-mec-privado-relatorio-prefeitos/"
-            f"relatorio_prefeitos/{uf}/{codigo_ibge}_{nome_enc}_{uf}.pdf.pdf"
-        )
-        st.markdown(
-            f'<a href="{url}" target="_blank"><button class="br-button">Baixar Relatório</button></a>',
-            unsafe_allow_html=True,
-        )
+    with col_btn:
+        st.markdown("&nbsp;", unsafe_allow_html=True)
+        if municipio_escolhido:
+            info = municipios[
+                (municipios["nome"] == municipio_escolhido)
+                & (municipios["sigla_uf"] == uf_escolhida)
+            ].iloc[0]
+            codigo_ibge = info["id_municipio"]
+            nome_enc = urllib.parse.quote(info["nome"], safe="")
+            uf = info["sigla_uf"]
+            url = (
+                f"https://storage.googleapis.com/br-mec-privado-relatorio-prefeitos/"
+                f"relatorio_prefeitos/{uf}/{codigo_ibge}_{nome_enc}_{uf}.pdf.pdf"
+            )
+            st.markdown(
+                f'<a href="{url}" target="_blank"><button class="br-button">Baixar Relatório</button></a>',
+                unsafe_allow_html=True,
+            )
 
 
 tab1, tab2, tab3 = st.tabs(["MEC 2025", "Equidade 2025", "MEC 2024"])
