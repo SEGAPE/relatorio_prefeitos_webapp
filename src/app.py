@@ -22,8 +22,19 @@ st.markdown(
         header[data-testid="stHeader"] {
             display: none !important;
         }
+        footer {
+            display: none !important;
+        }
         .block-container {
-            padding-top: 0.5rem !important;
+            padding-top: 0.3rem !important;
+            padding-bottom: 0 !important;
+        }
+        /* Reduzir espaço entre elementos */
+        .stMarkdown p {
+            margin-bottom: 0 !important;
+        }
+        [data-testid="stVerticalBlock"] > [data-testid="stVerticalBlock"] {
+            gap: 0.3rem !important;
         }
         .br-button {
             background-color: #1351B4;
@@ -40,7 +51,7 @@ st.markdown(
             cursor: pointer;
             width: 90px;
             line-height: 1.4;
-            margin-top: 22px;
+            margin-top: 0;
         }
         div[data-baseweb="select"] > div {
             background-color: #FFFFFF;
@@ -116,7 +127,7 @@ def renderizar_aba_csv(csv_path, base_url, prefix):
         )
 
     with col_btn:
-        st.markdown("&nbsp;", unsafe_allow_html=True)
+        st.markdown("<span style='visibility:hidden'>**x**</span>", unsafe_allow_html=True)
         if municipio_escolhido:
             linha = df[(df["uf"] == uf_escolhida) & (df["municipio"] == municipio_escolhido)].iloc[0]
             url = base_url + linha["caminho"]
@@ -163,7 +174,7 @@ def renderizar_aba_2024():
         )
 
     with col_btn:
-        st.markdown("&nbsp;", unsafe_allow_html=True)
+        st.markdown("<span style='visibility:hidden'>**x**</span>", unsafe_allow_html=True)
         if municipio_escolhido:
             info = municipios[
                 (municipios["nome"] == municipio_escolhido)
@@ -182,7 +193,7 @@ def renderizar_aba_2024():
             )
 
 
-st.markdown("<p style='margin:0 0 4px 0; font-weight:600;'>Selecione o relatório</p>", unsafe_allow_html=True)
+st.markdown("<p style='margin:0 0 2px 0; font-weight:600;'>Selecione o relatório</p>", unsafe_allow_html=True)
 tab1, tab2, tab3 = st.tabs(["Relatório Educacional 2025", "Relatório Equidade Racial", "Relatório Educacional 2024"])
 
 with tab1:
