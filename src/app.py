@@ -194,7 +194,7 @@ def renderizar_aba_2024():
 
 
 st.markdown("<p style='margin:0 0 2px 0; font-weight:600;'>Selecione o relatório</p>", unsafe_allow_html=True)
-tab1, tab2, tab3 = st.tabs(["Relatório Educacional 2025", "Relatório Equidade Racial", "Relatório Educacional 2024"])
+tab1, tab2 = st.tabs(["Relatório Educacional 2025", "Relatório Equidade Racial"])
 
 with tab1:
     renderizar_aba_csv(
@@ -209,6 +209,3 @@ with tab2:
         base_url="https://storage.googleapis.com/br-mec-privado-relatorio-prefeitos/atm-eq_052026/",
         prefix="eq2025",
     )
-
-with tab3:
-    renderizar_aba_2024()
